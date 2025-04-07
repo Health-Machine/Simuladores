@@ -21,4 +21,9 @@ thread_sensor_frequencia.start()
 
 thread_sensor_corrente.join()
 thread_sensor_tensao.join()
+thread_sensor_temperatura.join()
+thread_sensor_vibracao.join()
+thread_sensor_pressao.join()
+thread_sensor_frequencia.join()
+
 print("Execução do sensores concluída.")

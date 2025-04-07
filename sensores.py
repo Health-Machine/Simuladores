@@ -11,7 +11,12 @@ passo = 100
 
 ID_SENSOR_CORRENTE = database.get_sensor('ACS712 30A')
 ID_SENSOR_TENSAO = database.get_sensor('ZMPT101B')
+ID_SENSOR_TEMPERATURA = database.get_sensor('LM35CZ')
+ID_SENSOR_VIBRACAO = database.get_sensor('QM30VT1')
+ID_SENSOR_PRESSAO = database.get_sensor('MPX5700DP')
+ID_SENSOR_FREQUENCIA = database.get_sensor('IFM DI6001')
 
+# Configuração do banco de dados
 engine = database.get_engine()
 
 # Corrente
@@ -25,9 +30,28 @@ vmax_out = 3.53
 vmax_in = 400
 variacao_minima = 220
 
+# Parâmetros do sensor de temperatura
+temperatura_nominal = 25.0  # graus Celsius
+variacao_maxima_temp = 0.8  # variação máxima simulada
+
+# Parâmetros do sensor QM30VT1
+velocidade_nominal = 10.0  # Velocidade de vibração nominal em mm/s
+variacao_permitida = 2.0  # Variação aleatória permitida
+
+# Parâmetros do sensor de frequência
+frequencia_nominal = 60.0
+variacao_maxima_freq = 1.5
+
+# Parâmetros do sensor de pressão
+pressao_nominal = 35.0  # Pa
+variacao_maxima_pressao = 0.5  # Pa
+
+
 
 def measure_memory():
     return sys.getsizeof([]) / (1024 * 1024)
+
+
 def simular_dados(sensor_id, calcular_valor):
     valores = []
     start_time = time.time()
@@ -66,9 +90,45 @@ def calcular_tensao():
     return (variacao / vmax_in) * vmax_out
 
 
+def calcular_temperatura():
+    variacao = random.uniform(-variacao_maxima_temp, variacao_maxima_temp)
+    return round(temperatura_nominal + variacao, 2)
+
+
+def calcular_vibracao():
+    variacao = random.uniform(-variacao_permitida, variacao_permitida)
+    return round(velocidade_nominal + variacao, 3)
+
+
+def calcular_pressao():
+    variacao = random.uniform(-variacao_maxima_pressao, variacao_maxima_pressao)
+    return round(pressao_nominal + variacao, 2)
+
+
+def calcular_frequencia():
+    variacao = random.uniform(-variacao_maxima_freq, variacao_maxima_freq)
+    return round(frequencia_nominal + variacao, 2)
+
+
 def sim_corrente():
     simular_dados(ID_SENSOR_CORRENTE, calcular_corrente)
 
 
 def sim_tensao():
     simular_dados(ID_SENSOR_TENSAO, calcular_tensao)
+
+
+def sim_temperatura():
+    simular_dados(ID_SENSOR_TEMPERATURA, calcular_temperatura)
+
+
+def sim_vibracao():
+    simular_dados(ID_SENSOR_VIBRACAO, calcular_vibracao)
+
+
+def sim_pressao():
+    simular_dados(ID_SENSOR_PRESSAO, calcular_pressao)
+
+
+def sim_frequencia():
+    simular_dados(ID_SENSOR_FREQUENCIA, calcular_frequencia)

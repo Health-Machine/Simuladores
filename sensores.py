@@ -1,12 +1,15 @@
+import asyncio
 import sys
 import random
 import pandas as pd
 import datetime as dt
 import time
 import database
+import iotHubConnection
+import json
 
 inicio = 1000
-fim = 6000
+fim = 1500
 passo = 100
 
 ID_SENSOR_CORRENTE = database.get_sensor('ACS712 30A')
@@ -49,13 +52,16 @@ variacao_maxima_pressao = 0.5  # Pa
 
 
 def measure_memory():
-    return sys.getsizeof([]) / (1024 * 1024)
+    return sys.getsizeof([]) / (1024 * 1024)    
+    
 
 
-def simular_dados(sensor_id, calcular_valor):
+async def simular_dados(sensor_id, calcular_valor, hubConnection=None):
     valores = []
     start_time = time.time()
     start_memory = measure_memory()
+
+    await hubConnection.connect()
 
     for repeticoes in range(inicio, fim + 1, passo):
         for _ in range(repeticoes):
@@ -65,13 +71,22 @@ def simular_dados(sensor_id, calcular_valor):
                 'valor': valor_calculado,
                 'data_captura': dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             }
+
+            if hubConnection:
+                await hubConnection.send_message(json.dumps(insert))
+    
+
             valores.append(insert)
+
+    await hubConnection.disconnect()
 
     end_time = time.time()
     end_memory = measure_memory()
 
-    df = pd.DataFrame(valores)
-    df.to_sql('captura', con=engine, if_exists='append', index=False)
+    
+
+    #df = pd.DataFrame(valores)
+    #df.to_sql('captura', con=engine, if_exists='append', index=False)
 
     print("""
     Tempo de execução: {:.2f} segundos
@@ -111,7 +126,8 @@ def calcular_frequencia():
 
 
 def sim_corrente():
-    simular_dados(ID_SENSOR_CORRENTE, calcular_corrente)
+    con = iotHubConnection.IoTHubConnection('HostName=hub-health.azure-devices.net;DeviceId=corrente;SharedAccessKey=i5rZ3k+3HQaU3uVP4K6PMTa8KqiuIvZOWIAg+Uz1PSI=')
+    simular_dados(ID_SENSOR_CORRENTE, calcular_corrente, hubConnection=con)
 
 
 def sim_tensao():
@@ -119,10 +135,12 @@ def sim_tensao():
 
 
 def sim_temperatura():
-    simular_dados(ID_SENSOR_TEMPERATURA, calcular_temperatura)
+    con = iotHubConnection.IoTHubConnection('HostName=hub-health.azure-devices.net;DeviceId=temperatura;SharedAccessKey=8eHWKVH8ptjHFwFC4c/8eYa/yWLyD57QIUD8v5HhVps=')
+    simular_dados(ID_SENSOR_TEMPERATURA, calcular_temperatura, hubConnection=con)
 
 
 def sim_vibracao():
+    
     simular_dados(ID_SENSOR_VIBRACAO, calcular_vibracao)
 
 
@@ -131,4 +149,5 @@ def sim_pressao():
 
 
 def sim_frequencia():
-    simular_dados(ID_SENSOR_FREQUENCIA, calcular_frequencia)
+    con = iotHubConnection.IoTHubConnection('HostName=hub-health.azure-devices.net;DeviceId=frequencia;SharedAccessKey=aX4b8KOOzO8NRveMf7zBvSFaFGe8D/yXXrSDgUNGGvA=')
+    simular_dados(ID_SENSOR_FREQUENCIA, calcular_frequencia, hubConnection=con)

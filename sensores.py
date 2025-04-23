@@ -76,7 +76,7 @@ async def simular_dados(sensor_id, calcular_valor, hubConnection=None):
                 await hubConnection.send_message(json.dumps(insert))
     
 
-            valores.append(insert)
+            #valores.append(insert)
 
     await hubConnection.disconnect()
 
@@ -126,28 +126,30 @@ def calcular_frequencia():
 
 
 def sim_corrente():
-    con = iotHubConnection.IoTHubConnection('HostName=hub-health.azure-devices.net;DeviceId=corrente;SharedAccessKey=i5rZ3k+3HQaU3uVP4K6PMTa8KqiuIvZOWIAg+Uz1PSI=')
-    simular_dados(ID_SENSOR_CORRENTE, calcular_corrente, hubConnection=con)
+    con = iotHubConnection.IoTHubConnection('HostName=hub-health.azure-devices.net;DeviceId=corrente;SharedAccessKey=5+i4c7Flbp462IOQnIUqvnFKwpcgbrKFeFt8INJ1QdQ=')
+    asyncio.run(simular_dados(ID_SENSOR_CORRENTE, calcular_corrente, hubConnection=con))
 
 
 def sim_tensao():
-    simular_dados(ID_SENSOR_TENSAO, calcular_tensao)
+    con = iotHubConnection.IoTHubConnection('HostName=hub-health.azure-devices.net;DeviceId=tensao;SharedAccessKey=HVTDxRxkZ6VsyMyQWNOReg1k42O/OEO0d+oA3C+t8Ps=')
+    asyncio.run(simular_dados(ID_SENSOR_TENSAO, calcular_tensao, hubConnection=con))
 
 
 def sim_temperatura():
     con = iotHubConnection.IoTHubConnection('HostName=hub-health.azure-devices.net;DeviceId=temperatura;SharedAccessKey=8eHWKVH8ptjHFwFC4c/8eYa/yWLyD57QIUD8v5HhVps=')
-    simular_dados(ID_SENSOR_TEMPERATURA, calcular_temperatura, hubConnection=con)
+    asyncio.run(simular_dados(ID_SENSOR_TEMPERATURA, calcular_temperatura, hubConnection=con))
 
 
 def sim_vibracao():
-    
-    simular_dados(ID_SENSOR_VIBRACAO, calcular_vibracao)
+    con = iotHubConnection.IoTHubConnection('HostName=hub-health.azure-devices.net;DeviceId=vibracao;SharedAccessKey=YzDhTiyYHPpgjSKLb9NY5UOnDFstte2WV09+2fUgme0=')
+    asyncio.run(simular_dados(ID_SENSOR_VIBRACAO, calcular_vibracao, hubConnection=con))
 
 
 def sim_pressao():
-    simular_dados(ID_SENSOR_PRESSAO, calcular_pressao)
+    con = iotHubConnection.IoTHubConnection('HostName=hub-health.azure-devices.net;DeviceId=pressao;SharedAccessKey=93rLiZJuBKNsGXbwFf0LZ1ggbwQc2v+pS6yPHPBrk3k=')
+    asyncio.run(simular_dados(ID_SENSOR_PRESSAO, calcular_pressao, hubConnection=con))
 
 
 def sim_frequencia():
     con = iotHubConnection.IoTHubConnection('HostName=hub-health.azure-devices.net;DeviceId=frequencia;SharedAccessKey=aX4b8KOOzO8NRveMf7zBvSFaFGe8D/yXXrSDgUNGGvA=')
-    simular_dados(ID_SENSOR_FREQUENCIA, calcular_frequencia, hubConnection=con)
+    asyncio.run(simular_dados(ID_SENSOR_FREQUENCIA, calcular_frequencia, hubConnection=con))

@@ -4,7 +4,6 @@ import random
 import pandas as pd
 import datetime as dt
 import time
-import database
 import iotHubConnection
 import json
 
@@ -12,15 +11,13 @@ inicio = 1000
 fim = 1500
 passo = 100
 
-ID_SENSOR_CORRENTE = database.get_sensor('ACS712 30A')
-ID_SENSOR_TENSAO = database.get_sensor('ZMPT101B')
-ID_SENSOR_TEMPERATURA = database.get_sensor('LM35CZ')
-ID_SENSOR_VIBRACAO = database.get_sensor('QM30VT1')
-ID_SENSOR_PRESSAO = database.get_sensor('MPX5700DP')
-ID_SENSOR_FREQUENCIA = database.get_sensor('IFM DI6001')
+ID_SENSOR_CORRENTE = 1#database.get_sensor('ACS712 30A')
+ID_SENSOR_TENSAO = 2#database.get_sensor('ZMPT101B')
+ID_SENSOR_TEMPERATURA = 3#database.get_sensor('LM35CZ')
+ID_SENSOR_VIBRACAO = 4#database.get_sensor('QM30VT1')
+ID_SENSOR_PRESSAO = 5#database.get_sensor('MPX5700DP')
+ID_SENSOR_FREQUENCIA = 6#database.get_sensor('IFM DI6001')
 
-# Configuração do banco de dados
-engine = database.get_engine()
 
 # Corrente
 tensao_padrao = 2.5      

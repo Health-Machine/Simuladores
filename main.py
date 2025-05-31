@@ -1,29 +1,22 @@
 import threading
-import sensores
+import sensor
+import json
 
-"""thread_sensor_corrente = threading.Thread(target=sensores.sim_corrente)
-thread_sensor_corrente.start()
-#
-thread_sensor_tensao = threading.Thread(target=sensores.sim_tensao)
-thread_sensor_tensao.start()
-#
-thread_sensor_temperatura = threading.Thread(target=sensores.sim_temperatura)
-thread_sensor_temperatura.start()
-#
-thread_sensor_vibracao = threading.Thread(target=sensores.sim_vibracao)
-thread_sensor_vibracao.start()
-#
-thread_sensor_pressao = threading.Thread(target=sensores.sim_pressao)
-thread_sensor_pressao.start()"""
-#
-thread_sensor_frequencia = threading.Thread(target=sensores.sim_frequencia)
-thread_sensor_frequencia.start()
+threads = [
+    threading.Thread(target=sensor.simular_dados_unificado, args=(sensor.ID_SENSOR_CORRENTE, sensor.calcular_corrente)),
+    threading.Thread(target=sensor.simular_dados_unificado, args=(sensor.ID_SENSOR_TENSAO, sensor.calcular_tensao)),
+    threading.Thread(target=sensor.simular_dados_unificado, args=(sensor.ID_SENSOR_TEMPERATURA, sensor.calcular_temperatura)),
+    threading.Thread(target=sensor.simular_dados_unificado, args=(sensor.ID_SENSOR_VIBRACAO, sensor.calcular_vibracao)),
+    threading.Thread(target=sensor.simular_dados_unificado, args=(sensor.ID_SENSOR_PRESSAO, sensor.calcular_pressao)),
+    threading.Thread(target=sensor.simular_dados_unificado, args=(sensor.ID_SENSOR_FREQUENCIA, sensor.calcular_frequencia)),
+]
 
-#thread_sensor_corrente.join()
-#thread_sensor_tensao.join()   
-#thread_sensor_temperatura.join()
-#thread_sensor_vibracao.join()
-#thread_sensor_pressao.join()
-thread_sensor_frequencia.join()
+for t in threads:
+    t.start()
+for t in threads:
+    t.join()
 
-print("Execução do sensores concluída.")
+with open('dados_todos_sensores.json', 'w', encoding='utf-8') as f:
+    json.dump(sensor.rawData, f, ensure_ascii=False, indent=4)
+
+print('Dados de todos os sensores salvos em dados_todos_sensores.json')

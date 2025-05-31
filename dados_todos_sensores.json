@@ -1,0 +1,152 @@
+[
+    {
+        "fk_sensor": 4,
+        "valor": 11.588,
+        "data_captura": "2025-05-31 18:36:54"
+    },
+    {
+        "fk_sensor": 4,
+        "valor": 9.531,
+        "data_captura": "2025-05-31 18:36:55"
+    },
+    {
+        "fk_sensor": 4,
+        "valor": 8.172,
+        "data_captura": "2025-05-31 18:36:56"
+    },
+    {
+        "fk_sensor": 4,
+        "valor": 8.387,
+        "data_captura": "2025-05-31 18:36:57"
+    },
+    {
+        "fk_sensor": 4,
+        "valor": 9.52,
+        "data_captura": "2025-05-31 18:36:58"
+    },
+    {
+        "fk_sensor": 1,
+        "valor": 10.212,
+        "data_captura": "2025-05-31 18:36:54"
+    },
+    {
+        "fk_sensor": 1,
+        "valor": 10.025,
+        "data_captura": "2025-05-31 18:36:55"
+    },
+    {
+        "fk_sensor": 1,
+        "valor": 10.298,
+        "data_captura": "2025-05-31 18:36:56"
+    },
+    {
+        "fk_sensor": 1,
+        "valor": 10.209,
+        "data_captura": "2025-05-31 18:36:57"
+    },
+    {
+        "fk_sensor": 1,
+        "valor": 9.855,
+        "data_captura": "2025-05-31 18:36:58"
+    },
+    {
+        "fk_sensor": 2,
+        "valor": 3.4325275083495987,
+        "data_captura": "2025-05-31 18:36:54"
+    },
+    {
+        "fk_sensor": 2,
+        "valor": 3.2832523209789115,
+        "data_captura": "2025-05-31 18:36:55"
+    },
+    {
+        "fk_sensor": 2,
+        "valor": 3.358194482239756,
+        "data_captura": "2025-05-31 18:36:56"
+    },
+    {
+        "fk_sensor": 2,
+        "valor": 3.388244033270089,
+        "data_captura": "2025-05-31 18:36:57"
+    },
+    {
+        "fk_sensor": 2,
+        "valor": 2.0402042299743592,
+        "data_captura": "2025-05-31 18:36:58"
+    },
+    {
+        "fk_sensor": 3,
+        "valor": 25.68,
+        "data_captura": "2025-05-31 18:36:54"
+    },
+    {
+        "fk_sensor": 3,
+        "valor": 25.03,
+        "data_captura": "2025-05-31 18:36:55"
+    },
+    {
+        "fk_sensor": 3,
+        "valor": 25.69,
+        "data_captura": "2025-05-31 18:36:56"
+    },
+    {
+        "fk_sensor": 3,
+        "valor": 25.71,
+        "data_captura": "2025-05-31 18:36:57"
+    },
+    {
+        "fk_sensor": 3,
+        "valor": 24.42,
+        "data_captura": "2025-05-31 18:36:58"
+    },
+    {
+        "fk_sensor": 6,
+        "valor": 59.4,
+        "data_captura": "2025-05-31 18:36:54"
+    },
+    {
+        "fk_sensor": 6,
+        "valor": 58.95,
+        "data_captura": "2025-05-31 18:36:55"
+    },
+    {
+        "fk_sensor": 6,
+        "valor": 60.38,
+        "data_captura": "2025-05-31 18:36:56"
+    },
+    {
+        "fk_sensor": 6,
+        "valor": 60.11,
+        "data_captura": "2025-05-31 18:36:57"
+    },
+    {
+        "fk_sensor": 6,
+        "valor": 60.77,
+        "data_captura": "2025-05-31 18:36:58"
+    },
+    {
+        "fk_sensor": 5,
+        "valor": 34.65,
+        "data_captura": "2025-05-31 18:36:54"
+    },
+    {
+        "fk_sensor": 5,
+        "valor": 34.68,
+        "data_captura": "2025-05-31 18:36:55"
+    },
+    {
+        "fk_sensor": 5,
+        "valor": 35.49,
+        "data_captura": "2025-05-31 18:36:56"
+    },
+    {
+        "fk_sensor": 5,
+        "valor": 35.41,
+        "data_captura": "2025-05-31 18:36:57"
+    },
+    {
+        "fk_sensor": 5,
+        "valor": 35.12,
+        "data_captura": "2025-05-31 18:36:58"
+    }
+]

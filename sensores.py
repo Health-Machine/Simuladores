@@ -12,15 +12,16 @@ inicio = 1000
 fim = 1500
 passo = 100
 
-ID_SENSOR_CORRENTE = database.get_sensor('ACS712 30A')
-ID_SENSOR_TENSAO = database.get_sensor('ZMPT101B')
-ID_SENSOR_TEMPERATURA = database.get_sensor('LM35CZ')
-ID_SENSOR_VIBRACAO = database.get_sensor('QM30VT1')
-ID_SENSOR_PRESSAO = database.get_sensor('MPX5700DP')
-ID_SENSOR_FREQUENCIA = database.get_sensor('IFM DI6001')
+# ID_SENSOR_CORRENTE = database.get_sensor('ACS712 30A')
+# ID_SENSOR_TENSAO = database.get_sensor('ZMPT101B')
+# ID_SENSOR_TEMPERATURA = database.get_sensor('LM35CZ')
+# ID_SENSOR_VIBRACAO = database.get_sensor('QM30VT1')
+# ID_SENSOR_PRESSAO = database.get_sensor('MPX5700DP')
+# ID_SENSOR_FREQUENCIA = database.get_sensor('IFM DI6001')
+ID_SENSOR_FREQUENCIA = 6
 
 # Configuração do banco de dados
-engine = database.get_engine()
+# engine = database.get_engine()
 
 # Corrente
 tensao_padrao = 2.5      
@@ -119,10 +120,16 @@ def calcular_pressao():
     variacao = random.uniform(-variacao_maxima_pressao, variacao_maxima_pressao)
     return round(pressao_nominal + variacao, 2)
 
-
+step_frequencia = {'atual': 0, 'total': ((fim - inicio) // passo + 1) * fim}
 def calcular_frequencia():
+    progresso = step_frequencia['atual'] / step_frequencia['total']
+    freq_inicial = 60.0
+    freq_final = 40.0
+    freq_nominal_atual = freq_inicial - (freq_inicial - freq_final) * progresso
     variacao = random.uniform(-variacao_maxima_freq, variacao_maxima_freq)
-    return round(frequencia_nominal + variacao, 2)
+    valor = round(freq_nominal_atual + variacao, 2)
+    step_frequencia['atual'] += 1
+    return valor
 
 
 def sim_corrente():
